@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+$primary: #9b8900;
+$light: #e2e2e2;
+
+@import "../../node_modules/bootstrap/scss/_functions";
+@import "../../node_modules/bootstrap/scss/_variables";
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+*:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+}
+
+.category-name,
+.service-name {
+    margin-bottom: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.splide__slide .card {
+    margin: 0 auto;
+}
+
+.testimonials .card-text {
+    font-size: .9rem;
+}
+
+.filter {
+    ul {
+        padding-left: 0;
+    }
+
+    li {
+        list-style-type: none;
+        font-size: .9rem;
+    }
+}
+
+.ourstory {
+    text-align: justify;
+
+    @media screen and (min-width: 768px) {
+        text-align: center;
+        width: 80%;
+    }
+}
+
+.ourmission,
+.ourvision {
+    text-align: justify;
+}
+
+.btn-group .plus {
+    border-top-right-radius: 6px !important;
+    border-bottom-right-radius: 6px !important;
+}

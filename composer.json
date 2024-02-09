@@ -1,0 +1,17 @@
+{
+    "name": "user/union_fashion_mall",
+    "authors": [
+        {
+            "name": "Yune Su Nadi",
+            "email": "yunesunadi.dev@gmail.com"
+        }
+    ],
+    "require": {
+        "ezyang/htmlpurifier": "^4.17"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "./"
+        }
+    }
+}
