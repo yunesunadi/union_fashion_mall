@@ -194,11 +194,13 @@ unset($_SESSION["success"]);
                             <?php if ($auth): ?>
                             <?php if ($wishlists): ?>
                             <?php foreach ($wishlists as $wishlist): ?>
+                            <?php if ($wishlist->product_id == $product->id): ?>
                             <a class="wishlist-btn card-text position-absolute end-0 mt-2 me-3"
                                 data-userid="<?= $auth->id ?>" data-productid="<?= $product->id ?>"
-                                data-status="<?= (($wishlist->product_id == $product->id) && ($wishlist->status == 1)) ? 1 : 0 ?>">
-                                <?= (($wishlist->product_id == $product->id) && ($wishlist->status == 1)) ? '<i class="fa-solid fa-heart"></i>' : '<i class="fa-regular fa-heart"></i>' ?>
+                                data-status="<?= ($wishlist->status == 1) ? 1 : 0 ?>">
+                                <?= ($wishlist->status == 1) ? '<i class="fa-solid fa-heart"></i>' : '<i class="fa-regular fa-heart"></i>' ?>
                             </a>
+                            <?php endif; ?>
                             <?php endforeach; ?>
                             <?php else: ?>
                             <a class="wishlist-btn card-text position-absolute end-0 mt-2 me-3"
