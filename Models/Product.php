@@ -346,24 +346,28 @@ class Product
     public function insertWishlist(string $id)
     {
         try {
-            session_start();
-            $auth = $_SESSION["user"];
-            $user_id = $auth->id;
+            if (!isset($_SESSION))
+                session_start();
 
-            $statement = $this->db->prepare("SELECT * FROM wishlists WHERE user_id=:user_id AND product_id=:product_id");
-            $statement->execute([
-                "user_id" => $user_id,
-                "product_id" => $id,
-            ]);
-            $wishlist = $statement->fetch();
+            if (isset($_SESSION["user"])) {
+                $auth = $_SESSION["user"];
+                $user_id = $auth->id;
 
-            if (!$wishlist) {
-                $statement = $this->db->prepare("INSERT INTO wishlists (user_id, product_id, status, created_at) VALUES (:user_id, :product_id, :status, NOW())");
+                $statement = $this->db->prepare("SELECT * FROM wishlists WHERE user_id=:user_id AND product_id=:product_id");
                 $statement->execute([
-                    ":user_id" => $user_id,
-                    ":product_id" => $id,
-                    ":status" => 0,
+                    "user_id" => $user_id,
+                    "product_id" => $id,
                 ]);
+                $wishlist = $statement->fetch();
+
+                if (!$wishlist) {
+                    $statement = $this->db->prepare("INSERT INTO wishlists (user_id, product_id, status, created_at) VALUES (:user_id, :product_id, :status, NOW())");
+                    $statement->execute([
+                        ":user_id" => $user_id,
+                        ":product_id" => $id,
+                        ":status" => 0,
+                    ]);
+                }
             }
         } catch (PDOException $e) {
             echo $e->getMessage();
